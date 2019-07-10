@@ -4,7 +4,7 @@ defmodule PhoenixRollbar.MixProject do
   def project do
     [
       app: :phoenix_rollbar,
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -21,6 +21,7 @@ defmodule PhoenixRollbar.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:phoenix, "~> 1.4.2"},
       {:rollbax, ">= 0.0.0"}
     ]
   end
