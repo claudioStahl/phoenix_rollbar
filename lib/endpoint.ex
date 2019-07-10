@@ -1,8 +1,6 @@
 defmodule PhoenixRollbar.Endpoint do
   require Logger
 
-  import Plug.Conn
-
   defmacro __using__(_opts) do
     quote location: :keep do
       @before_compile PhoenixRollbar.Endpoint
@@ -34,16 +32,15 @@ defmodule PhoenixRollbar.Endpoint do
   end
 
   def __catch__(conn, kind, reason, stack) do
-    stack = System.stacktrace()
     metadata = Logger.metadata() |> Enum.into(%{})
 
-    log(conn, kind, reason, stack, metadata)
+    log(conn, kind, reason, stack)
     report(conn, kind, reason, stack, metadata)
 
     :erlang.raise(kind, reason, stack)
   end
 
-  defp log(conn, kind, reason, stack, metadata) do
+  defp log(conn, kind, reason, stack) do
     conn_json = conn_to_request(conn) |> Poison.encode!()
     Logger.info("Conn: #{conn_json}")
 
