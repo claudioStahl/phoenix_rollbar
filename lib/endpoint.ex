@@ -41,7 +41,7 @@ defmodule PhoenixRollbar.Endpoint do
   end
 
   defp log(conn, kind, reason, stack) do
-    conn_json = conn_to_request(conn) |> Poison.encode!()
+    conn_json = conn_to_request(conn) |> Jason.encode!()
     Logger.info("Conn: #{conn_json}")
 
     Exception.format(kind, reason, stack)

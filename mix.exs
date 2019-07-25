@@ -22,7 +22,8 @@ defmodule PhoenixRollbar.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.4.2"},
-      {:rollbax, ">= 0.0.0"}
+      {:rollbax, ">= 0.0.0"},
+      {:jason, "~> 1.1"}
     ]
   end
 end
